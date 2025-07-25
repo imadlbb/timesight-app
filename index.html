@@ -16,6 +16,7 @@
       --sidebar-width: 250px;
       --highlight: #fff8c9;
       --success: #4CAF50;
+      --error: #f44336;
     }
     .dark-mode {
       --bg-color: #121212;
@@ -38,7 +39,125 @@
       transition: all 0.3s;
       min-height: 100vh;
     }
-    /* SIDEBAR */
+
+    /* LOGIN SCREEN */
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+    .login-card {
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .login-header {
+      margin-bottom: 30px;
+    }
+    .login-header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .login-header p {
+      color: #666;
+      font-size: 0.95em;
+    }
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .form-group {
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: var(--text-color);
+    }
+    .login-form input {
+      padding: 15px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      width: 100%;
+      background: var(--card-bg);
+      color: var(--text-color);
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+    .login-form input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(194, 178, 128, 0.1);
+    }
+    .login-btn {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 10px;
+    }
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(194, 178, 128, 0.3);
+    }
+    .login-toggle {
+      margin-top: 20px;
+      color: #666;
+    }
+    .login-toggle a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .login-toggle a:hover {
+      text-decoration: underline;
+    }
+    .error-message {
+      background: rgba(244, 67, 54, 0.1);
+      color: var(--error);
+      padding: 10px;
+      border-radius: 8px;
+      border-left: 4px solid var(--error);
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+    .success-message {
+      background: rgba(76, 175, 80, 0.1);
+      color: var(--success);
+      padding: 10px;
+      border-radius: 8px;
+      border-left: 4px solid var(--success);
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    /* MAIN APP */
+    .app-container {
+      display: none;
+      width: 100%;
+    }
+    .app-container.active {
+      display: flex;
+    }
     .sidebar {
       width: var(--sidebar-width);
       background: var(--card-bg);
@@ -54,6 +173,41 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+      padding: 10px;
+      background: rgba(0,0,0,0.05);
+      border-radius: 8px;
+    }
+    .user-info .user-avatar {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+    .logout-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-color);
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: all 0.2s;
+    }
+    .logout-btn:hover {
+      background: var(--error);
+      color: white;
+      border-color: var(--error);
     }
     .sidebar-nav {
       display: flex;
@@ -85,9 +239,6 @@
       color: white;
       box-shadow: 0 4px 15px rgba(194, 178, 128, 0.3);
     }
-    .sidebar-nav button i {
-      font-size: 18px;
-    }
     .goal-progress {
       margin-top: 20px;
       padding: 12px;
@@ -101,7 +252,6 @@
       background: rgba(76, 175, 80, 0.1);
       border-left-color: var(--success);
     }
-    /* MAIN CONTENT */
     .main-content {
       flex: 1;
       padding: 20px;
@@ -121,12 +271,10 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       border: 1px solid var(--border);
     }
-    /* CHART */
     .chart-container {
       height: 300px;
       margin-top: 20px;
     }
-    /* FORM ELEMENTS */
     input, select {
       padding: 12px;
       border: 1px solid var(--border);
@@ -152,7 +300,6 @@
       transform: translateY(-2px);
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-    /* ACTIVITY LIST */
     #activityList {
       margin-top: 20px;
     }
@@ -196,7 +343,6 @@
       background: rgba(255, 99, 132, 0.2);
       transform: translateY(-1px);
     }
-    /* THEME TOGGLE */
     .theme-toggle {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -214,7 +360,6 @@
       transform: scale(1.1);
       box-shadow: 0 3px 8px rgba(0,0,0,0.15);
     }
-    /* PROGRESS BAR */
     .progress-container {
       width: 100%;
       height: 8px;
@@ -229,9 +374,8 @@
       border-radius: 4px;
       transition: width 0.5s ease;
     }
-    /* MOBILE RESPONSIVENESS */
     @media (max-width: 768px) {
-      body {
+      .app-container {
         flex-direction: column;
       }
       .sidebar {
@@ -239,108 +383,165 @@
         height: auto;
         position: relative;
       }
+      .login-card {
+        margin: 20px;
+        padding: 30px;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <div class="sidebar-header">
-      <h1>⏳ TimeSight</h1>
-      <button class="theme-toggle" id="themeToggle">🌓</button>
-    </div>
-    
-    <div class="sidebar-nav">
-      <button class="active" data-section="activity">
-        <span>⚡</span> Activity
-      </button>
-      <button data-section="breakdown">
-        <span>📊</span> Time Breakdown
-      </button>
-      <button data-section="goal">
-        <span>🎯</span> Daily Goal
-      </button>
-      <button data-section="settings">
-        <span>⚙️</span> Settings
-      </button>
-    </div>
-    
-    <div class="goal-progress" id="sidebarGoalProgress">
-      <div>Goal Progress: 0%</div>
-      <div class="progress-container">
-        <div class="progress-bar" id="goalProgressBar" style="width: 0%"></div>
+  <!-- LOGIN SCREEN -->
+  <div class="login-container" id="loginContainer">
+    <div class="login-card">
+      <div class="login-header">
+        <h1>⏳ TimeSight</h1>
+        <p>Track your time, achieve your goals</p>
       </div>
-      <div id="goalMinutes">0/0 mins</div>
+      
+      <div id="messageContainer"></div>
+      
+      <form class="login-form" id="authForm">
+        <div class="form-group">
+          <label for="username">Username or Email</label>
+          <input type="text" id="username" placeholder="Enter your username or email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" required>
+        </div>
+        
+        <button type="submit" class="login-btn" id="authBtn">Sign In</button>
+      </form>
+      
+      <div class="login-toggle">
+        <span id="toggleText">Don't have an account?</span>
+        <a id="toggleLink">Create one</a>
+      </div>
     </div>
   </div>
 
-  <!-- MAIN CONTENT -->
-  <div class="main-content">
-    <!-- ACTIVITY SECTION -->
-    <div class="section active" id="activitySection">
-      <div class="card">
-        <input type="text" id="activityName" placeholder="What did you do?">
-        <select id="activityCategory">
-          <option value="work">Work</option>
-          <option value="study">Study</option>
-          <option value="social">Social Media</option>
-          <option value="entertainment">Entertainment</option>
-          <option value="health">Health</option>
-          <option value="personal">Personal</option>
-          <option value="finance">Finance</option>
-          <option value="other">Other</option>
-        </select>
-        <input type="number" id="activityDuration" placeholder="Duration (minutes)" min="1" value="1">
-        <button class="primary" id="logActivity">Log Activity</button>
+  <!-- MAIN APP -->
+  <div class="app-container" id="appContainer">
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h1>⏳ TimeSight</h1>
+        <button class="theme-toggle" id="themeToggle">🌓</button>
       </div>
       
-      <div class="card" id="activityList">
-        <h2>Recent Activities</h2>
-        <!-- Activities will appear here -->
-      </div>
-    </div>
-    
-    <!-- TIME BREAKDOWN SECTION -->
-    <div class="section" id="breakdownSection">
-      <div class="card">
-        <h2>Your Time Breakdown</h2>
-        <div class="chart-container">
-          <canvas id="timeChart"></canvas>
+      <div class="user-info" id="userInfo">
+        <div class="user-avatar" id="userAvatar">U</div>
+        <div>
+          <div id="currentUser">User</div>
+          <button class="logout-btn" id="logoutBtn">Logout</button>
         </div>
       </div>
-    </div>
-    
-    <!-- DAILY GOAL SECTION -->
-    <div class="section" id="goalSection">
-      <div class="card">
-        <h2>Set Daily Goal</h2>
-        <input type="number" id="dailyGoal" placeholder="Minutes goal" min="1">
-        <button class="primary" id="setGoal">Update Goal</button>
+      
+      <div class="sidebar-nav">
+        <button class="active" data-section="activity">
+          <span>⚡</span> Activity
+        </button>
+        <button data-section="breakdown">
+          <span>📊</span> Time Breakdown
+        </button>
+        <button data-section="goal">
+          <span>🎯</span> Daily Goal
+        </button>
+        <button data-section="settings">
+          <span>⚙️</span> Settings
+        </button>
+      </div>
+      
+      <div class="goal-progress" id="sidebarGoalProgress">
+        <div>Goal Progress: 0%</div>
+        <div class="progress-container">
+          <div class="progress-bar" id="goalProgressBar" style="width: 0%"></div>
+        </div>
+        <div id="goalMinutes">0/0 mins</div>
       </div>
     </div>
-    
-    <!-- SETTINGS SECTION -->
-    <div class="section" id="settingsSection">
-      <div class="card">
-        <h2>Data Export</h2>
-        <button class="primary" id="exportBtn">Export All Data (CSV)</button>
+
+    <div class="main-content">
+      <div class="section active" id="activitySection">
+        <div class="card">
+          <input type="text" id="activityName" placeholder="What did you do?">
+          <select id="activityCategory">
+            <option value="work">Work</option>
+            <option value="study">Study</option>
+            <option value="social">Social Media</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="health">Health</option>
+            <option value="personal">Personal</option>
+            <option value="finance">Finance</option>
+            <option value="other">Other</option>
+          </select>
+          <input type="number" id="activityDuration" placeholder="Duration (minutes)" min="1" value="1">
+          <button class="primary" id="logActivity">Log Activity</button>
+        </div>
+        
+        <div class="card" id="activityList">
+          <h2>Recent Activities</h2>
+        </div>
+      </div>
+      
+      <div class="section" id="breakdownSection">
+        <div class="card">
+          <h2>Your Time Breakdown</h2>
+          <div class="chart-container">
+            <canvas id="timeChart"></canvas>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section" id="goalSection">
+        <div class="card">
+          <h2>Set Daily Goal</h2>
+          <input type="number" id="dailyGoal" placeholder="Minutes goal" min="1">
+          <button class="primary" id="setGoal">Update Goal</button>
+        </div>
+      </div>
+      
+      <div class="section" id="settingsSection">
+        <div class="card">
+          <h2>Data Export</h2>
+          <button class="primary" id="exportBtn">Export All Data (CSV)</button>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
-    // Theme Toggle
-    const themeToggle = document.getElementById('themeToggle');
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      themeToggle.textContent = document.body.classList.contains('dark-mode') ? '🌞' : '🌙';
-    });
+    // User Database (In-memory simulation)
+    let users = {
+      'demo@example.com': {
+        password: 'demo123',
+        username: 'demo',
+        activities: [],
+        dailyGoal: 480
+      }
+    };
 
-    // Data Storage - Store data in memory instead of localStorage
+    // Current session
+    let currentUser = null;
     let activities = [];
-    let dailyGoal = 60; // Default goal for testing
+    let dailyGoal = 0;
+    let isSignUp = false;
 
     // DOM Elements
+    const loginContainer = document.getElementById('loginContainer');
+    const appContainer = document.getElementById('appContainer');
+    const authForm = document.getElementById('authForm');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const authBtn = document.getElementById('authBtn');
+    const toggleLink = document.getElementById('toggleLink');
+    const toggleText = document.getElementById('toggleText');
+    const messageContainer = document.getElementById('messageContainer');
+    const currentUserDisplay = document.getElementById('currentUser');
+    const userAvatar = document.getElementById('userAvatar');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const themeToggle = document.getElementById('themeToggle');
     const activityName = document.getElementById('activityName');
     const activityCategory = document.getElementById('activityCategory');
     const activityDuration = document.getElementById('activityDuration');
@@ -353,129 +554,137 @@
     const goalMinutes = document.getElementById('goalMinutes');
     const goalProgressBar = document.getElementById('goalProgressBar');
 
-    // Initialize
-    dailyGoalInput.value = dailyGoal;
-    updateProgressBar();
+    // Chart variable
+    let timeChart;
 
-    // Sidebar Navigation
-    document.querySelectorAll('.sidebar-nav button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.sidebar-nav button').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-        
-        btn.classList.add('active');
-        document.getElementById(btn.dataset.section + 'Section').classList.add('active');
-      });
-    });
+    // Authentication Functions
+    function showMessage(message, type = 'error') {
+      messageContainer.innerHTML = `<div class="${type}-message">${message}</div>`;
+      setTimeout(() => {
+        messageContainer.innerHTML = '';
+      }, 5000);
+    }
 
-    // Prevent invalid duration input
-    activityDuration.addEventListener('input', () => {
-      if (parseInt(activityDuration.value) < 1) {
-        activityDuration.value = 1;
-      }
-    });
-
-    // Set Daily Goal
-    setGoalBtn.addEventListener('click', () => {
-      const goal = parseInt(dailyGoalInput.value);
-      if (goal >= 1) {
-        dailyGoal = goal;
-        updateProgressBar();
-        alert(`Daily goal set to ${goal} minutes!`);
+    function toggleAuthMode() {
+      isSignUp = !isSignUp;
+      if (isSignUp) {
+        authBtn.textContent = 'Sign Up';
+        toggleText.textContent = 'Already have an account?';
+        toggleLink.textContent = 'Sign in';
       } else {
-        alert('Please enter a valid goal (minimum 1 minute)');
+        authBtn.textContent = 'Sign In';
+        toggleText.textContent = "Don't have an account?";
+        toggleLink.textContent = 'Create one';
       }
-    });
+      messageContainer.innerHTML = '';
+    }
 
-    // Export Data
-    exportBtn.addEventListener('click', () => {
-      if (activities.length === 0) {
-        alert('No data to export yet!');
-        return;
-      }
+    function login(identifier, password) {
+      const user = users[identifier] || Object.values(users).find(u => u.username === identifier);
       
-      const csvHeader = 'Activity Name,Category,Duration (minutes),Date\n';
-      const csvData = activities.map(act => 
-        `"${act.name}","${act.category}",${act.duration},"${act.date}"`
-      ).join('\n');
-      
-      const blob = new Blob([csvHeader + csvData], { type: 'text/csv' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `timesight-export-${new Date().toISOString().split('T')[0]}.csv`;
-      a.click();
-    });
-
-    // Chart Setup
-    const ctx = document.getElementById('timeChart').getContext('2d');
-    let timeChart = new Chart(ctx, {
-      type: 'pie',
-      data: {
-        labels: ['Work', 'Study', 'Social', 'Entertainment', 'Health', 'Personal', 'Finance', 'Other'],
-        datasets: [{
-          data: [],
-          backgroundColor: [
-            '#006990',
-            '#9cedfb',
-            '#5865F2',
-            '#FFFF00',
-            '#89ff9f',
-            '#AEC6CF',
-            '#2E7D32',
-            '#964B00'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { position: 'top' }
-        }
+      if (user && user.password === password) {
+        currentUser = identifier.includes('@') ? identifier : Object.keys(users).find(key => users[key].username === identifier);
+        loadUserData();
+        showApp();
+        return true;
       }
-    });
+      return false;
+    }
 
-    // Log New Activity
-    logActivityBtn.addEventListener('click', () => {
-      if (!activityName.value) return alert('Please enter an activity name!');
-      
-      const duration = parseInt(activityDuration.value);
-      if (duration < 1) {
-        alert('Duration must be at least 1 minute!');
-        activityDuration.value = 1;
-        return;
+    function signUp(identifier, password) {
+      if (users[identifier] || Object.values(users).find(u => u.username === identifier)) {
+        return false;
       }
 
-      const newActivity = {
-        id: Date.now(),
-        name: activityName.value,
-        category: activityCategory.value,
-        duration: duration,
-        date: new Date().toISOString(), // Store as ISO string for better date handling
-        dateString: new Date().toLocaleString() // Keep formatted string for display
+      const isEmail = identifier.includes('@');
+      const username = isEmail ? identifier.split('@')[0] : identifier;
+      const key = isEmail ? identifier : `${identifier}@temp.com`;
+
+      users[key] = {
+        password: password,
+        username: username,
+        activities: [],
+        dailyGoal: 480
       };
 
-      activities.push(newActivity);
-      updateUI();
-      activityName.value = '';
-      activityDuration.value = 1;
-    });
+      currentUser = key;
+      loadUserData();
+      showApp();
+      return true;
+    }
 
-    // Update Progress Bar - FIXED VERSION
+    function loadUserData() {
+      const userData = users[currentUser];
+      activities = userData.activities;
+      dailyGoal = userData.dailyGoal;
+      dailyGoalInput.value = dailyGoal;
+      
+      currentUserDisplay.textContent = userData.username;
+      userAvatar.textContent = userData.username.charAt(0).toUpperCase();
+      
+      initChart();
+      updateUI();
+    }
+
+    function saveUserData() {
+      if (currentUser && users[currentUser]) {
+        users[currentUser].activities = activities;
+        users[currentUser].dailyGoal = dailyGoal;
+      }
+    }
+
+    function showApp() {
+      loginContainer.style.display = 'none';
+      appContainer.classList.add('active');
+    }
+
+    function logout() {
+      saveUserData();
+      currentUser = null;
+      activities = [];
+      dailyGoal = 0;
+      loginContainer.style.display = 'flex';
+      appContainer.classList.remove('active');
+      authForm.reset();
+      messageContainer.innerHTML = '';
+    }
+
+    function initChart() {
+      const ctx = document.getElementById('timeChart').getContext('2d');
+      if (timeChart) {
+        timeChart.destroy();
+      }
+      timeChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ['Work', 'Study', 'Social', 'Entertainment', 'Health', 'Personal', 'Finance', 'Other'],
+          datasets: [{
+            data: [0, 0, 0, 0, 0, 0, 0, 0],
+            backgroundColor: [
+              '#006990', '#9cedfb', '#5865F2', '#FFFF00',
+              '#89ff9f', '#AEC6CF', '#2E7D32', '#964B00'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: 'top' }
+          }
+        }
+      });
+    }
+
     function updateProgressBar() {
       if (dailyGoal > 0) {
         const todayTotal = getTodayTotal();
         const progress = Math.min((todayTotal / dailyGoal) * 100, 100);
         
-        // Update text
         goalProgress.querySelector('div:first-child').textContent = `Goal Progress: ${Math.round(progress)}%`;
         goalMinutes.textContent = `${todayTotal}/${dailyGoal} mins`;
-        
-        // Update progress bar
         goalProgressBar.style.width = `${progress}%`;
         
-        // Update colors when completed
         if (progress >= 100) {
           goalProgress.classList.add('goal-completed');
           goalProgressBar.style.background = 'var(--success)';
@@ -491,7 +700,6 @@
       }
     }
 
-    // Get Today's Total Minutes - FIXED VERSION
     function getTodayTotal() {
       const today = new Date();
       const todayDateString = today.getFullYear() + '-' + 
@@ -509,15 +717,14 @@
         .reduce((sum, act) => sum + act.duration, 0);
     }
 
-    // Delete Activity
     function deleteActivity(id) {
       if (confirm('Are you sure you want to delete this activity?')) {
         activities = activities.filter(act => act.id !== id);
+        saveUserData();
         updateUI();
       }
     }
 
-    // Edit Activity
     function editActivity(id) {
       const activity = activities.find(act => act.id === id);
       activityName.value = activity.name;
@@ -529,7 +736,6 @@
       activityName.focus();
     }
 
-    // Update Charts & List
     function updateUI() {
       // Update Chart
       const categories = ['work', 'study', 'social', 'entertainment', 'health', 'personal', 'finance', 'other'];
@@ -539,8 +745,10 @@
           .reduce((sum, act) => sum + act.duration, 0);
       });
 
-      timeChart.data.datasets[0].data = timeByCategory;
-      timeChart.update();
+      if (timeChart) {
+        timeChart.data.datasets[0].data = timeByCategory;
+        timeChart.update();
+      }
 
       // Update Activity List
       activityList.innerHTML = '<h2>Recent Activities</h2>';
@@ -569,8 +777,125 @@
       updateProgressBar();
     }
 
-    // Initialize
-    updateUI();
+    // Event Listeners
+    toggleLink.addEventListener('click', toggleAuthMode);
+
+    authForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const identifier = usernameInput.value.trim();
+      const password = passwordInput.value;
+
+      if (!identifier || !password) {
+        showMessage('Please fill in all fields');
+        return;
+      }
+
+      if (password.length < 6) {
+        showMessage('Password must be at least 6 characters long');
+        return;
+      }
+
+      if (isSignUp) {
+        if (signUp(identifier, password)) {
+          showMessage('Account created successfully! Welcome to TimeSight!', 'success');
+        } else {
+          showMessage('Username or email already exists');
+        }
+      } else {
+        if (login(identifier, password)) {
+          showMessage('Welcome back!', 'success');
+        } else {
+          showMessage('Invalid username/email or password');
+        }
+      }
+    });
+
+    logoutBtn.addEventListener('click', logout);
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      themeToggle.textContent = document.body.classList.contains('dark-mode') ? '🌞' : '🌙';
+    });
+
+    document.querySelectorAll('.sidebar-nav button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.sidebar-nav button').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.section + 'Section').classList.add('active');
+      });
+    });
+
+    activityDuration.addEventListener('input', () => {
+      if (parseInt(activityDuration.value) < 1) {
+        activityDuration.value = 1;
+      }
+    });
+
+    setGoalBtn.addEventListener('click', () => {
+      const goal = parseInt(dailyGoalInput.value);
+      if (goal >= 1) {
+        dailyGoal = goal;
+        saveUserData();
+        updateProgressBar();
+        alert(`Daily goal set to ${goal} minutes!`);
+      } else {
+        alert('Please enter a valid goal (minimum 1 minute)');
+      }
+    });
+
+    exportBtn.addEventListener('click', () => {
+      if (activities.length === 0) {
+        alert('No data to export yet!');
+        return;
+      }
+      
+      const csvHeader = 'Activity Name,Category,Duration (minutes),Date\n';
+      const csvData = activities.map(act => 
+        `"${act.name}","${act.category}",${act.duration},"${act.date}"`
+      ).join('\n');
+      
+      const blob = new Blob([csvHeader + csvData], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `timesight-export-${new Date().toISOString().split('T')[0]}.csv`;
+      a.click();
+    });
+
+    logActivityBtn.addEventListener('click', () => {
+      if (!activityName.value) return alert('Please enter an activity name!');
+      
+      const duration = parseInt(activityDuration.value);
+      if (duration < 1) {
+        alert('Duration must be at least 1 minute!');
+        activityDuration.value = 1;
+        return;
+      }
+
+      const newActivity = {
+        id: Date.now(),
+        name: activityName.value,
+        category: activityCategory.value,
+        duration: duration,
+        date: new Date().toISOString(),
+        dateString: new Date().toLocaleString()
+      };
+
+      activities.push(newActivity);
+      saveUserData();
+      updateUI();
+      activityName.value = '';
+      activityDuration.value = 1;
+    });
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      // Show login screen by default
+      loginContainer.style.display = 'flex';
+      appContainer.classList.remove('active');
+    });
   </script>
 </body>
 </html>
