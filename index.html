@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TimeSight – Visualize Your Time</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="module" src="register.js" defer></script>
   <style>
     :root {
       --bg-color: #f5f5f5;
@@ -864,12 +865,16 @@
       a.click();
     });
 
+    // Fixed Log Activity Button Functionality
     logActivityBtn.addEventListener('click', () => {
-      if (!activityName.value) return alert('Please enter an activity name!');
+      if (!activityName.value) {
+        showMessage('Please enter an activity name!');
+        return;
+      }
       
       const duration = parseInt(activityDuration.value);
       if (duration < 1) {
-        alert('Duration must be at least 1 minute!');
+        showMessage('Duration must be at least 1 minute!');
         activityDuration.value = 1;
         return;
       }
@@ -888,6 +893,7 @@
       updateUI();
       activityName.value = '';
       activityDuration.value = 1;
+      showMessage('Activity logged successfully!', 'success');
     });
 
     // Initialize on page load
